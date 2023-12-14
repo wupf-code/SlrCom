@@ -53,7 +53,7 @@ namespace BlueSerial
             {
                 Directory.CreateDirectory(logFolderPath);
             }
-            LogError("123123123123");
+            //LogError("123123123123");
         }
 
         private void tvRecvDragEnterEventHandler(object obj, DragEventArgs args)
