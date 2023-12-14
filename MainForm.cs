@@ -21,7 +21,7 @@ namespace BlueSerial
         private ArrayList scanComList = new ArrayList();//串口列表
         private static SerialPort mSerialPort;
         private Thread receiveThread=null,scanComThread=null,periodSendThread;
-        private delegate void SafeCallDelegate(string text);
+        private delegate void SafeCallDelegate(byte[] text);
         private int sendByteCount = 0;
         private ArrayList projectList =  new ArrayList{ "苏11", "苏6" };
         public MainForm()
@@ -42,10 +42,11 @@ namespace BlueSerial
             cb_baud_list.DataSource = baudRateList;
             cb_data_list.DataSource = dataBitList;
             cb_parity_list.DataSource = parityList;
+            cb_parity_list.SelectedIndex = 2;
             cb_stop_list.DataSource = stopBitList;
             cb_baud_list.SelectedIndex = 5;
             chose_project.DataSource = projectList;
-            chose_project.SelectedIndex = 0;
+            chose_project.SelectedIndex = 0; 
             this.AllowDrop = true;
             this.DragEnter += new DragEventHandler(tvRecvDragEnterEventHandler);
             // 确保 log 文件夹存在
@@ -153,6 +154,7 @@ namespace BlueSerial
             {
                 var d = new SafeCallDelegate(displayReceiveData);
                 Invoke(d, new object[] { obj });
+                //Invoke(d, new object[] { obj[0] })
             }
             else
             {
@@ -161,16 +163,18 @@ namespace BlueSerial
                     byte[] byteArray = (byte[])obj;
                     
                     string dispalyString = convertBytesToHexString(byteArray, chose_project.SelectedIndex);
-                    tb_recv.AppendText(dispalyString + "\n");
+                    tb_recv.AppendText(dispalyString + "\r\n");
                     label_recv_count.Text = "R:" + (tb_recv.Text.Length) / 3;
                 }
                 else
                 {
+                    byte[] byteArray = (byte[])obj;
+                    string hexString = BitConverter.ToString(byteArray).Replace("-", " ");
 
-                    tb_recv.AppendText((string)obj);
-                    label_recv_count.Text = "R:" + tb_recv.Text.Length;
+                    tb_recv.AppendText(hexString + "\r\n");
+                    label_recv_count.Text = "R:" + (tb_recv.Text.Length) / 3;
 
-                }
+            }
 
             }
 

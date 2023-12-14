@@ -43,7 +43,7 @@ namespace BlueSerial.Utils
         public static string convertBytesToHexString(byte[] bytesArray, int type)
         {
 
-            StringBuilder sb = new StringBuilder();
+            
             string hexString = BitConverter.ToString(bytesArray).Replace("-", " ");
             if(!check(bytesArray, type))
             {
@@ -60,9 +60,9 @@ namespace BlueSerial.Utils
                 return false;
             }
             Array.Copy(bytesArray, 1, inData, 0, inData.Length);
-            var crc = new Crc(CrcModel.CRC16_CCITT);
+            var crc = new Crc(CrcModel.CRC16_CCITT_FALSE);
             byte[] result = crc.Calculate(inData);
-            if (result[0] == bytesArray[bytesArray.Length -2] && result[1] == bytesArray[bytesArray.Length - 1]) 
+            if (result[0] == bytesArray[bytesArray.Length -3] && result[1] == bytesArray[bytesArray.Length - 2]) 
             {
                 return true;
             }

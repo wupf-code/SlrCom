@@ -78,40 +78,44 @@
             // 
             this.tb_recv.BackColor = System.Drawing.Color.Black;
             this.tb_recv.ForeColor = System.Drawing.Color.Lime;
-            this.tb_recv.Location = new System.Drawing.Point(3, 28);
+            this.tb_recv.Location = new System.Drawing.Point(4, 42);
+            this.tb_recv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_recv.Multiline = true;
             this.tb_recv.Name = "tb_recv";
             this.tb_recv.ReadOnly = true;
             this.tb_recv.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tb_recv.Size = new System.Drawing.Size(499, 288);
+            this.tb_recv.Size = new System.Drawing.Size(746, 430);
             this.tb_recv.TabIndex = 0;
             // 
             // tb_send
             // 
             this.tb_send.AllowDrop = true;
-            this.tb_send.Location = new System.Drawing.Point(3, 347);
+            this.tb_send.Location = new System.Drawing.Point(4, 520);
+            this.tb_send.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_send.Multiline = true;
             this.tb_send.Name = "tb_send";
             this.tb_send.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tb_send.Size = new System.Drawing.Size(499, 100);
+            this.tb_send.Size = new System.Drawing.Size(746, 148);
             this.tb_send.TabIndex = 1;
             // 
             // cb_com_list
             // 
             this.cb_com_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_com_list.FormattingEnabled = true;
-            this.cb_com_list.Location = new System.Drawing.Point(510, 29);
+            this.cb_com_list.Location = new System.Drawing.Point(765, 44);
+            this.cb_com_list.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cb_com_list.Name = "cb_com_list";
-            this.cb_com_list.Size = new System.Drawing.Size(196, 20);
+            this.cb_com_list.Size = new System.Drawing.Size(292, 26);
             this.cb_com_list.TabIndex = 2;
             this.cb_com_list.SelectedIndexChanged += new System.EventHandler(this.Cb_com_list_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(508, 11);
+            this.label1.Location = new System.Drawing.Point(762, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(80, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "串口选择";
             // 
@@ -119,9 +123,10 @@
             // 
             this.cb_baud_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_baud_list.FormattingEnabled = true;
-            this.cb_baud_list.Location = new System.Drawing.Point(584, 69);
+            this.cb_baud_list.Location = new System.Drawing.Point(876, 104);
+            this.cb_baud_list.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cb_baud_list.Name = "cb_baud_list";
-            this.cb_baud_list.Size = new System.Drawing.Size(121, 20);
+            this.cb_baud_list.Size = new System.Drawing.Size(180, 26);
             this.cb_baud_list.TabIndex = 4;
             this.cb_baud_list.SelectedIndexChanged += new System.EventHandler(this.Cb_baud_list_SelectedIndexChanged);
             // 
@@ -129,9 +134,10 @@
             // 
             this.cb_stop_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_stop_list.FormattingEnabled = true;
-            this.cb_stop_list.Location = new System.Drawing.Point(584, 107);
+            this.cb_stop_list.Location = new System.Drawing.Point(876, 160);
+            this.cb_stop_list.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cb_stop_list.Name = "cb_stop_list";
-            this.cb_stop_list.Size = new System.Drawing.Size(121, 20);
+            this.cb_stop_list.Size = new System.Drawing.Size(180, 26);
             this.cb_stop_list.TabIndex = 5;
             this.cb_stop_list.SelectedIndexChanged += new System.EventHandler(this.Cb_stop_list_SelectedIndexChanged);
             // 
@@ -139,9 +145,10 @@
             // 
             this.cb_data_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_data_list.FormattingEnabled = true;
-            this.cb_data_list.Location = new System.Drawing.Point(584, 146);
+            this.cb_data_list.Location = new System.Drawing.Point(876, 219);
+            this.cb_data_list.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cb_data_list.Name = "cb_data_list";
-            this.cb_data_list.Size = new System.Drawing.Size(121, 20);
+            this.cb_data_list.Size = new System.Drawing.Size(180, 26);
             this.cb_data_list.TabIndex = 6;
             this.cb_data_list.SelectedIndexChanged += new System.EventHandler(this.Cb_data_list_SelectedIndexChanged);
             // 
@@ -149,17 +156,19 @@
             // 
             this.cb_parity_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_parity_list.FormattingEnabled = true;
-            this.cb_parity_list.Location = new System.Drawing.Point(584, 184);
+            this.cb_parity_list.Location = new System.Drawing.Point(876, 276);
+            this.cb_parity_list.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cb_parity_list.Name = "cb_parity_list";
-            this.cb_parity_list.Size = new System.Drawing.Size(121, 20);
+            this.cb_parity_list.Size = new System.Drawing.Size(180, 26);
             this.cb_parity_list.TabIndex = 7;
             this.cb_parity_list.SelectedIndexChanged += new System.EventHandler(this.Cb_parity_list_SelectedIndexChanged);
             // 
             // btn_open_com
             // 
-            this.btn_open_com.Location = new System.Drawing.Point(584, 220);
+            this.btn_open_com.Location = new System.Drawing.Point(876, 330);
+            this.btn_open_com.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_open_com.Name = "btn_open_com";
-            this.btn_open_com.Size = new System.Drawing.Size(121, 23);
+            this.btn_open_com.Size = new System.Drawing.Size(182, 34);
             this.btn_open_com.TabIndex = 8;
             this.btn_open_com.Text = "打开串口";
             this.btn_open_com.UseVisualStyleBackColor = true;
@@ -168,53 +177,59 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(508, 72);
+            this.label2.Location = new System.Drawing.Point(762, 108);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(62, 18);
             this.label2.TabIndex = 9;
             this.label2.Text = "波特率";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(508, 110);
+            this.label3.Location = new System.Drawing.Point(762, 165);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.Size = new System.Drawing.Size(62, 18);
             this.label3.TabIndex = 10;
             this.label3.Text = "停止位";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(508, 149);
+            this.label4.Location = new System.Drawing.Point(762, 224);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.Size = new System.Drawing.Size(62, 18);
             this.label4.TabIndex = 11;
             this.label4.Text = "数据位";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(508, 187);
+            this.label5.Location = new System.Drawing.Point(762, 280);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.Size = new System.Drawing.Size(80, 18);
             this.label5.TabIndex = 12;
             this.label5.Text = "奇偶校验";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(508, 225);
+            this.label6.Location = new System.Drawing.Point(762, 338);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.Size = new System.Drawing.Size(80, 18);
             this.label6.TabIndex = 13;
             this.label6.Text = "串口操作";
             // 
             // btn_send
             // 
-            this.btn_send.Location = new System.Drawing.Point(510, 393);
+            this.btn_send.Location = new System.Drawing.Point(765, 590);
+            this.btn_send.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_send.Name = "btn_send";
-            this.btn_send.Size = new System.Drawing.Size(75, 24);
+            this.btn_send.Size = new System.Drawing.Size(112, 36);
             this.btn_send.TabIndex = 14;
             this.btn_send.Text = "发送";
             this.btn_send.UseVisualStyleBackColor = true;
@@ -222,9 +237,10 @@
             // 
             // btn_clean_send
             // 
-            this.btn_clean_send.Location = new System.Drawing.Point(510, 423);
+            this.btn_clean_send.Location = new System.Drawing.Point(765, 634);
+            this.btn_clean_send.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_clean_send.Name = "btn_clean_send";
-            this.btn_clean_send.Size = new System.Drawing.Size(75, 24);
+            this.btn_clean_send.Size = new System.Drawing.Size(112, 36);
             this.btn_clean_send.TabIndex = 15;
             this.btn_clean_send.Text = "清除发送";
             this.btn_clean_send.UseVisualStyleBackColor = true;
@@ -232,9 +248,10 @@
             // 
             // btn_clean_recv
             // 
-            this.btn_clean_recv.Location = new System.Drawing.Point(584, 255);
+            this.btn_clean_recv.Location = new System.Drawing.Point(876, 382);
+            this.btn_clean_recv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_clean_recv.Name = "btn_clean_recv";
-            this.btn_clean_recv.Size = new System.Drawing.Size(121, 23);
+            this.btn_clean_recv.Size = new System.Drawing.Size(182, 34);
             this.btn_clean_recv.TabIndex = 16;
             this.btn_clean_recv.Text = "清除接收";
             this.btn_clean_recv.UseVisualStyleBackColor = true;
@@ -243,9 +260,12 @@
             // cbox_hex_display
             // 
             this.cbox_hex_display.AutoSize = true;
-            this.cbox_hex_display.Location = new System.Drawing.Point(584, 300);
+            this.cbox_hex_display.Checked = true;
+            this.cbox_hex_display.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbox_hex_display.Location = new System.Drawing.Point(876, 450);
+            this.cbox_hex_display.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbox_hex_display.Name = "cbox_hex_display";
-            this.cbox_hex_display.Size = new System.Drawing.Size(84, 16);
+            this.cbox_hex_display.Size = new System.Drawing.Size(124, 22);
             this.cbox_hex_display.TabIndex = 17;
             this.cbox_hex_display.Text = "16进制显示";
             this.cbox_hex_display.UseVisualStyleBackColor = true;
@@ -254,9 +274,12 @@
             // cbox_send_hex
             // 
             this.cbox_send_hex.AutoSize = true;
-            this.cbox_send_hex.Location = new System.Drawing.Point(3, 454);
+            this.cbox_send_hex.Checked = true;
+            this.cbox_send_hex.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbox_send_hex.Location = new System.Drawing.Point(4, 681);
+            this.cbox_send_hex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbox_send_hex.Name = "cbox_send_hex";
-            this.cbox_send_hex.Size = new System.Drawing.Size(84, 16);
+            this.cbox_send_hex.Size = new System.Drawing.Size(124, 22);
             this.cbox_send_hex.TabIndex = 18;
             this.cbox_send_hex.Text = "16进制发送";
             this.cbox_send_hex.UseVisualStyleBackColor = true;
@@ -265,11 +288,10 @@
             // cbox_send_line
             // 
             this.cbox_send_line.AutoSize = true;
-            this.cbox_send_line.Checked = true;
-            this.cbox_send_line.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbox_send_line.Location = new System.Drawing.Point(93, 454);
+            this.cbox_send_line.Location = new System.Drawing.Point(140, 681);
+            this.cbox_send_line.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbox_send_line.Name = "cbox_send_line";
-            this.cbox_send_line.Size = new System.Drawing.Size(72, 16);
+            this.cbox_send_line.Size = new System.Drawing.Size(106, 22);
             this.cbox_send_line.TabIndex = 19;
             this.cbox_send_line.Text = "发送新行";
             this.cbox_send_line.UseVisualStyleBackColor = true;
@@ -277,9 +299,10 @@
             // cbox_timer_send
             // 
             this.cbox_timer_send.AutoSize = true;
-            this.cbox_timer_send.Location = new System.Drawing.Point(171, 454);
+            this.cbox_timer_send.Location = new System.Drawing.Point(256, 681);
+            this.cbox_timer_send.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbox_timer_send.Name = "cbox_timer_send";
-            this.cbox_timer_send.Size = new System.Drawing.Size(72, 16);
+            this.cbox_timer_send.Size = new System.Drawing.Size(106, 22);
             this.cbox_timer_send.TabIndex = 21;
             this.cbox_timer_send.Text = "定时发送";
             this.cbox_timer_send.UseVisualStyleBackColor = true;
@@ -287,23 +310,26 @@
             // 
             // tb_period_send_time_ms
             // 
-            this.tb_period_send_time_ms.Location = new System.Drawing.Point(249, 452);
+            this.tb_period_send_time_ms.Location = new System.Drawing.Point(374, 678);
+            this.tb_period_send_time_ms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_period_send_time_ms.Name = "tb_period_send_time_ms";
-            this.tb_period_send_time_ms.Size = new System.Drawing.Size(50, 21);
+            this.tb_period_send_time_ms.Size = new System.Drawing.Size(73, 28);
             this.tb_period_send_time_ms.TabIndex = 22;
             this.tb_period_send_time_ms.Text = "1000";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(306, 457);
+            this.label8.Location = new System.Drawing.Point(459, 686);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(17, 12);
+            this.label8.Size = new System.Drawing.Size(26, 18);
             this.label8.TabIndex = 23;
             this.label8.Text = "ms";
             // 
             // menu_top
             // 
+            this.menu_top.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menu_top.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menu_top.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ts_menu_file,
@@ -312,8 +338,8 @@
             this.ts_menu_notepad_tool});
             this.menu_top.Location = new System.Drawing.Point(0, 0);
             this.menu_top.Name = "menu_top";
-            this.menu_top.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menu_top.Size = new System.Drawing.Size(718, 24);
+            this.menu_top.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
+            this.menu_top.Size = new System.Drawing.Size(1077, 36);
             this.menu_top.TabIndex = 24;
             // 
             // ts_menu_file
@@ -322,20 +348,20 @@
             this.ts_menu_open_file,
             this.ts_menu_save_as});
             this.ts_menu_file.Name = "ts_menu_file";
-            this.ts_menu_file.Size = new System.Drawing.Size(44, 22);
+            this.ts_menu_file.Size = new System.Drawing.Size(62, 32);
             this.ts_menu_file.Text = "文件";
             // 
             // ts_menu_open_file
             // 
             this.ts_menu_open_file.Name = "ts_menu_open_file";
-            this.ts_menu_open_file.Size = new System.Drawing.Size(112, 22);
+            this.ts_menu_open_file.Size = new System.Drawing.Size(164, 34);
             this.ts_menu_open_file.Text = "打开";
             this.ts_menu_open_file.Click += new System.EventHandler(this.Ts_menu_open_file_Click);
             // 
             // ts_menu_save_as
             // 
             this.ts_menu_save_as.Name = "ts_menu_save_as";
-            this.ts_menu_save_as.Size = new System.Drawing.Size(112, 22);
+            this.ts_menu_save_as.Size = new System.Drawing.Size(164, 34);
             this.ts_menu_save_as.Text = "另存为";
             this.ts_menu_save_as.Click += new System.EventHandler(this.Ts_menu_save_as_Click);
             // 
@@ -349,89 +375,92 @@
             this.ts_menu_screenshot,
             this.ts_menu_mspaint});
             this.ts_menu_tool.Name = "ts_menu_tool";
-            this.ts_menu_tool.Size = new System.Drawing.Size(44, 22);
+            this.ts_menu_tool.Size = new System.Drawing.Size(62, 32);
             this.ts_menu_tool.Text = "工具";
             // 
             // ts_menu_calc
             // 
             this.ts_menu_calc.Name = "ts_menu_calc";
-            this.ts_menu_calc.Size = new System.Drawing.Size(112, 22);
+            this.ts_menu_calc.Size = new System.Drawing.Size(164, 34);
             this.ts_menu_calc.Text = "计算器";
             this.ts_menu_calc.Click += new System.EventHandler(this.Ts_menu_calc_Click);
             // 
             // ts_menu_nodepad
             // 
             this.ts_menu_nodepad.Name = "ts_menu_nodepad";
-            this.ts_menu_nodepad.Size = new System.Drawing.Size(112, 22);
+            this.ts_menu_nodepad.Size = new System.Drawing.Size(164, 34);
             this.ts_menu_nodepad.Text = "记事本";
             this.ts_menu_nodepad.Click += new System.EventHandler(this.Ts_menu_nodepad_Click);
             // 
             // ts_menu_cmd
             // 
             this.ts_menu_cmd.Name = "ts_menu_cmd";
-            this.ts_menu_cmd.Size = new System.Drawing.Size(112, 22);
+            this.ts_menu_cmd.Size = new System.Drawing.Size(164, 34);
             this.ts_menu_cmd.Text = "命令行";
             this.ts_menu_cmd.Click += new System.EventHandler(this.Ts_menu_cmd_Click);
             // 
             // ts_menu_regedit
             // 
             this.ts_menu_regedit.Name = "ts_menu_regedit";
-            this.ts_menu_regedit.Size = new System.Drawing.Size(112, 22);
+            this.ts_menu_regedit.Size = new System.Drawing.Size(164, 34);
             this.ts_menu_regedit.Text = "注册表";
             this.ts_menu_regedit.Click += new System.EventHandler(this.Ts_menu_regedit_Click);
             // 
             // ts_menu_screenshot
             // 
             this.ts_menu_screenshot.Name = "ts_menu_screenshot";
-            this.ts_menu_screenshot.Size = new System.Drawing.Size(112, 22);
+            this.ts_menu_screenshot.Size = new System.Drawing.Size(164, 34);
             this.ts_menu_screenshot.Text = "截图";
             this.ts_menu_screenshot.Click += new System.EventHandler(this.Ts_menu_screenshot_Click);
             // 
             // ts_menu_mspaint
             // 
             this.ts_menu_mspaint.Name = "ts_menu_mspaint";
-            this.ts_menu_mspaint.Size = new System.Drawing.Size(112, 22);
+            this.ts_menu_mspaint.Size = new System.Drawing.Size(164, 34);
             this.ts_menu_mspaint.Text = "画图";
             this.ts_menu_mspaint.Click += new System.EventHandler(this.Ts_menu_mspaint_Click);
             // 
             // ts_menu_screenshot_tool
             // 
             this.ts_menu_screenshot_tool.Name = "ts_menu_screenshot_tool";
-            this.ts_menu_screenshot_tool.Size = new System.Drawing.Size(44, 22);
+            this.ts_menu_screenshot_tool.Size = new System.Drawing.Size(62, 32);
             this.ts_menu_screenshot_tool.Text = "截图";
             this.ts_menu_screenshot_tool.Click += new System.EventHandler(this.Ts_menu_screenshot_tool_Click);
             // 
             // ts_menu_notepad_tool
             // 
             this.ts_menu_notepad_tool.Name = "ts_menu_notepad_tool";
-            this.ts_menu_notepad_tool.Size = new System.Drawing.Size(56, 22);
+            this.ts_menu_notepad_tool.Size = new System.Drawing.Size(80, 32);
             this.ts_menu_notepad_tool.Text = "记事本";
             this.ts_menu_notepad_tool.Click += new System.EventHandler(this.Ts_menu_notepad_tool_Click);
             // 
             // label_recv_count
             // 
             this.label_recv_count.AutoSize = true;
-            this.label_recv_count.Location = new System.Drawing.Point(357, 458);
+            this.label_recv_count.Location = new System.Drawing.Point(536, 687);
+            this.label_recv_count.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_recv_count.Name = "label_recv_count";
-            this.label_recv_count.Size = new System.Drawing.Size(23, 12);
+            this.label_recv_count.Size = new System.Drawing.Size(35, 18);
             this.label_recv_count.TabIndex = 25;
             this.label_recv_count.Text = "R:0";
             // 
             // label_send_count
             // 
             this.label_send_count.AutoSize = true;
-            this.label_send_count.Location = new System.Drawing.Point(426, 458);
+            this.label_send_count.Location = new System.Drawing.Point(639, 687);
+            this.label_send_count.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_send_count.Name = "label_send_count";
-            this.label_send_count.Size = new System.Drawing.Size(23, 12);
+            this.label_send_count.Size = new System.Drawing.Size(35, 18);
             this.label_send_count.TabIndex = 26;
             this.label_send_count.Text = "S:0";
             // 
             // cbox_rts
             // 
             this.cbox_rts.AutoSize = true;
-            this.cbox_rts.Location = new System.Drawing.Point(510, 262);
+            this.cbox_rts.Location = new System.Drawing.Point(765, 393);
+            this.cbox_rts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbox_rts.Name = "cbox_rts";
-            this.cbox_rts.Size = new System.Drawing.Size(42, 16);
+            this.cbox_rts.Size = new System.Drawing.Size(61, 22);
             this.cbox_rts.TabIndex = 27;
             this.cbox_rts.Text = "RTS";
             this.cbox_rts.UseVisualStyleBackColor = true;
@@ -440,9 +469,10 @@
             // cbox_dtr
             // 
             this.cbox_dtr.AutoSize = true;
-            this.cbox_dtr.Location = new System.Drawing.Point(510, 300);
+            this.cbox_dtr.Location = new System.Drawing.Point(765, 450);
+            this.cbox_dtr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbox_dtr.Name = "cbox_dtr";
-            this.cbox_dtr.Size = new System.Drawing.Size(42, 16);
+            this.cbox_dtr.Size = new System.Drawing.Size(61, 22);
             this.cbox_dtr.TabIndex = 28;
             this.cbox_dtr.Text = "DTR";
             this.cbox_dtr.UseVisualStyleBackColor = true;
@@ -450,9 +480,10 @@
             // 
             // activateTc1
             // 
-            this.activateTc1.Location = new System.Drawing.Point(592, 320);
+            this.activateTc1.Location = new System.Drawing.Point(888, 480);
+            this.activateTc1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.activateTc1.Name = "activateTc1";
-            this.activateTc1.Size = new System.Drawing.Size(75, 24);
+            this.activateTc1.Size = new System.Drawing.Size(112, 36);
             this.activateTc1.TabIndex = 29;
             this.activateTc1.Text = "1车激活";
             this.activateTc1.UseVisualStyleBackColor = true;
@@ -461,18 +492,19 @@
             // 
             this.chose_project.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chose_project.FormattingEnabled = true;
-            this.chose_project.Location = new System.Drawing.Point(509, 324);
+            this.chose_project.Location = new System.Drawing.Point(764, 486);
+            this.chose_project.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chose_project.Name = "chose_project";
-            this.chose_project.Size = new System.Drawing.Size(77, 20);
+            this.chose_project.Size = new System.Drawing.Size(114, 26);
             this.chose_project.TabIndex = 30;
             // 
             // MainForm
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(718, 491);
+            this.ClientSize = new System.Drawing.Size(1077, 736);
             this.Controls.Add(this.chose_project);
             this.Controls.Add(this.activateTc1);
             this.Controls.Add(this.cbox_dtr);
@@ -506,6 +538,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu_top;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "BCom";
