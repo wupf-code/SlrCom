@@ -59,6 +59,10 @@ namespace BlueSerial.Utils
             {
                 return false;
             }
+            if (type == 1 && bytesArray.Length != 21)
+            {
+                return false;
+            }
             Array.Copy(bytesArray, 1, inData, 0, inData.Length);
             var crc = new Crc(CrcModel.CRC16_CCITT_FALSE);
             byte[] result = crc.Calculate(inData);

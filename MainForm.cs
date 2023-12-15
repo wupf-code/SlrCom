@@ -24,6 +24,8 @@ namespace BlueSerial
         private delegate void SafeCallDelegate(byte[] text);
         private int sendByteCount = 0;
         private ArrayList projectList =  new ArrayList{ "苏11", "苏6" };
+        private List<byte> receivedBytes = new List<byte>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -158,54 +160,65 @@ namespace BlueSerial
             }
             else
             {
-                if (cbox_hex_display.Checked)
+                byte[] byteArray = (byte[])obj;
+                foreach (byte b in byteArray)
                 {
-                    byte[] byteArray = (byte[])obj;
-                    
-                    string dispalyString = convertBytesToHexString(byteArray, chose_project.SelectedIndex);
-                    tb_recv.AppendText(dispalyString + "\r\n");
-                    label_recv_count.Text = "R:" + (tb_recv.Text.Length) / 3;
+                    if (b == 0xf2)
+                    {   
+                        if(receivedBytes.Count == 21)
+                        {
+                            receivedBytes.Clear();
+                        }
+                        // 开始新消息
+                        //receivedBytes.Clear();
+                        receivedBytes.Add(b);
+                    }
+                    else if (b == 0Xf6)
+                    {
+                        receivedBytes.Add(b);
+                        if(receivedBytes.Count == 21)
+                        {
+                            // 处理完整的消息
+                            byte[] completeMessage = receivedBytes.ToArray();
+                            // 处理 completeMessage
+                            HandleCompleteMessage(completeMessage);
+                            receivedBytes.Clear();
+                        }
+                    }
+                    else
+                    {
+                        // 添加字节到当前消息
+                        receivedBytes.Add(b);
+                    }
                 }
-                else
-                {
-                    byte[] byteArray = (byte[])obj;
-                    string hexString = BitConverter.ToString(byteArray).Replace("-", " ");
-
-                    tb_recv.AppendText(hexString + "\r\n");
-                    label_recv_count.Text = "R:" + (tb_recv.Text.Length) / 3;
-
-            }
 
             }
 
         }
+        private void HandleCompleteMessage(byte[] byteArray)
+        {
+            if (cbox_hex_display.Checked)
+            {
+                //byte[] byteArray = (byte[])obj;
 
-        //private void displayReceiveData(object obj)
-        //{
-        //    if (tb_recv.InvokeRequired)
-        //    {
-        //        var d = new SafeCallDelegate(displayReceiveData);
-        //        Invoke(d, new object[] { obj });
-        //    }
-        //    else {
-        //        if (cbox_hex_display.Checked)
-        //        {
+                string dispalyString = convertBytesToHexString(byteArray, chose_project.SelectedIndex);
+                tb_recv.AppendText(dispalyString + "\r\n");
+                label_recv_count.Text = "R:" + (tb_recv.Text.Length) / 3;
+            }
+            else
+            {
+                //byte[] byteArray = (byte[])obj;
+                string hexString = BitConverter.ToString(byteArray).Replace("-", " ");
 
-        //            tb_recv.AppendText(" " + convertToHexString((string)obj));
-        //            label_recv_count.Text = "R:" + (tb_recv.Text.Length + 1) / 3;
-        //        }
-        //        else {
+                tb_recv.AppendText(hexString + "\r\n");
+                label_recv_count.Text = "R:" + (tb_recv.Text.Length) / 3;
 
-        //            tb_recv.AppendText((string)obj);
-        //            label_recv_count.Text = "R:" + tb_recv.Text.Length;
+            }
+        }
+        
 
-        //        }
 
-        //    }
-
-        //}
-
-        private void Btn_open_com_Click(object sender, EventArgs e)
+private void Btn_open_com_Click(object sender, EventArgs e)
         {
             if (mSerialPort != null)
             {
@@ -420,64 +433,11 @@ namespace BlueSerial
         }
 
 
-        private void Ts_menu_calc_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("calc");
-        }
-
-        private void Ts_menu_nodepad_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("notepad");
-        }
-
-        private void Ts_menu_cmd_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("cmd");
-        }
-
-        private void Ts_menu_regedit_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("regedit");
-        }
-
-        private void Ts_menu_screenshot_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("snippingtool");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("您的系统不支持");
-            }
-        }
-
-        private void Ts_menu_mspaint_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("mspaint");
-        }
-
-        private void Ts_menu_screenshot_tool_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("snippingtool");
-        }
-
-        private void Ts_menu_mind_paint_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.freedraw.xyz/");
-        }
-
-
-        private void Ts_menu_notepad_tool_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("notepad");
-        }
-
         private void Ts_menu_save_as_Click(object sender, EventArgs e)
         {
             Stream mStream;
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = "d:\\";
+            saveFileDialog.InitialDirectory = "e:\\";
             saveFileDialog.Filter = "ext files (*.txt)|*.txt|All files(*.*)|*>**";
             saveFileDialog.FilterIndex = 1;
             saveFileDialog.RestoreDirectory = true;
@@ -558,6 +518,55 @@ namespace BlueSerial
         {
 
         }
+
+        private void activateTc2_f1_Click(object sender, EventArgs e)
+        {
+            if(chose_project.SelectedIndex == 0)
+            {
+                tb_send.Text = "fc 00 40 17 08 15 00 00 00 00 00 00 00 10 00 00 3d 38 f6";
+            } 
+            else if(chose_project.SelectedIndex == 1)
+            {
+                tb_send.Text = "fc 00 40 17 08 15 00 00 00 01 00 00 00 00 00 00 00 00 2b eb f6";
+            }
+        }
+
+        private void activateTc2_f2_Click(object sender, EventArgs e)
+        {
+            if (chose_project.SelectedIndex == 0)
+            {
+                tb_send.Text = "fc 00 44 17 08 15 00 00 00 02 00 00 00 00 00 00 e3 1d f6";
+            }
+            else if (chose_project.SelectedIndex == 1)
+            {
+                tb_send.Text = "fc 00 40 17 08 15 00 00 00 02 00 00 00 00 00 00 00 00 06 af f6";
+            }
+        }
+
+        private void activate1_f1_Click(object sender, EventArgs e)
+        {
+            if (chose_project.SelectedIndex == 0)
+            {
+                tb_send.Text = "fc 00 20 17 08 15 00 00 00 01 00 00 00 00 00 00 70 4a f6";
+            }
+            else if (chose_project.SelectedIndex == 1)
+            {
+                tb_send.Text = "fc 00 20 17 08 15 00 00 00 01 00 00 00 00 00 00 00 00 e1 d7 f6";
+            }
+        }
+
+        private void activate1_f6_Click(object sender, EventArgs e)
+        {
+            if (chose_project.SelectedIndex == 0)
+            {
+                tb_send.Text = "fc 00 20 17 08 15 00 00 00 02 00 00 00 00 00 00 a8 c8 f6";
+            }
+            else if (chose_project.SelectedIndex == 1)
+            {
+                tb_send.Text = "fc 00 20 17 08 15 00 00 00 02 00 00 00 00 00 00 00 00 cc 93 f6";
+            }
+        }
+
 
         private void periodSendTask()
         {
