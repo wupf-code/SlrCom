@@ -31,12 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tb_recv = new System.Windows.Forms.TextBox();
             this.tb_send = new System.Windows.Forms.TextBox();
-            this.cb_com_list = new System.Windows.Forms.ComboBox();
+            this.slr_com_list = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cb_baud_list = new System.Windows.Forms.ComboBox();
-            this.cb_stop_list = new System.Windows.Forms.ComboBox();
-            this.cb_data_list = new System.Windows.Forms.ComboBox();
-            this.cb_parity_list = new System.Windows.Forms.ComboBox();
+            this.slr_baud_list = new System.Windows.Forms.ComboBox();
+            this.slr_stop_list = new System.Windows.Forms.ComboBox();
+            this.slr_data_list = new System.Windows.Forms.ComboBox();
+            this.slr_parity_list = new System.Windows.Forms.ComboBox();
             this.btn_open_com = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -95,16 +95,16 @@
             this.tb_send.Size = new System.Drawing.Size(746, 148);
             this.tb_send.TabIndex = 1;
             // 
-            // cb_com_list
+            // slr_com_list
             // 
-            this.cb_com_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_com_list.FormattingEnabled = true;
-            this.cb_com_list.Location = new System.Drawing.Point(765, 44);
-            this.cb_com_list.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_com_list.Name = "cb_com_list";
-            this.cb_com_list.Size = new System.Drawing.Size(292, 26);
-            this.cb_com_list.TabIndex = 2;
-            this.cb_com_list.SelectedIndexChanged += new System.EventHandler(this.Cb_com_list_SelectedIndexChanged);
+            this.slr_com_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.slr_com_list.FormattingEnabled = true;
+            this.slr_com_list.Location = new System.Drawing.Point(765, 44);
+            this.slr_com_list.Margin = new System.Windows.Forms.Padding(4);
+            this.slr_com_list.Name = "cb_com_list";
+            this.slr_com_list.Size = new System.Drawing.Size(292, 26);
+            this.slr_com_list.TabIndex = 2;
+            this.slr_com_list.SelectedIndexChanged += new System.EventHandler(this.Cb_com_list_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -116,49 +116,49 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "串口选择";
             // 
-            // cb_baud_list
+            // slr_baud_list
             // 
-            this.cb_baud_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_baud_list.FormattingEnabled = true;
-            this.cb_baud_list.Location = new System.Drawing.Point(876, 104);
-            this.cb_baud_list.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_baud_list.Name = "cb_baud_list";
-            this.cb_baud_list.Size = new System.Drawing.Size(180, 26);
-            this.cb_baud_list.TabIndex = 4;
-            this.cb_baud_list.SelectedIndexChanged += new System.EventHandler(this.Cb_baud_list_SelectedIndexChanged);
+            this.slr_baud_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.slr_baud_list.FormattingEnabled = true;
+            this.slr_baud_list.Location = new System.Drawing.Point(876, 104);
+            this.slr_baud_list.Margin = new System.Windows.Forms.Padding(4);
+            this.slr_baud_list.Name = "cb_baud_list";
+            this.slr_baud_list.Size = new System.Drawing.Size(180, 26);
+            this.slr_baud_list.TabIndex = 4;
+            this.slr_baud_list.SelectedIndexChanged += new System.EventHandler(this.Cb_baud_list_SelectedIndexChanged);
             // 
-            // cb_stop_list
+            // slr_stop_list
             // 
-            this.cb_stop_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_stop_list.FormattingEnabled = true;
-            this.cb_stop_list.Location = new System.Drawing.Point(876, 160);
-            this.cb_stop_list.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_stop_list.Name = "cb_stop_list";
-            this.cb_stop_list.Size = new System.Drawing.Size(180, 26);
-            this.cb_stop_list.TabIndex = 5;
-            this.cb_stop_list.SelectedIndexChanged += new System.EventHandler(this.Cb_stop_list_SelectedIndexChanged);
+            this.slr_stop_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.slr_stop_list.FormattingEnabled = true;
+            this.slr_stop_list.Location = new System.Drawing.Point(876, 160);
+            this.slr_stop_list.Margin = new System.Windows.Forms.Padding(4);
+            this.slr_stop_list.Name = "cb_stop_list";
+            this.slr_stop_list.Size = new System.Drawing.Size(180, 26);
+            this.slr_stop_list.TabIndex = 5;
+            this.slr_stop_list.SelectedIndexChanged += new System.EventHandler(this.Cb_stop_list_SelectedIndexChanged);
             // 
-            // cb_data_list
+            // slr_data_list
             // 
-            this.cb_data_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_data_list.FormattingEnabled = true;
-            this.cb_data_list.Location = new System.Drawing.Point(876, 219);
-            this.cb_data_list.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_data_list.Name = "cb_data_list";
-            this.cb_data_list.Size = new System.Drawing.Size(180, 26);
-            this.cb_data_list.TabIndex = 6;
-            this.cb_data_list.SelectedIndexChanged += new System.EventHandler(this.Cb_data_list_SelectedIndexChanged);
+            this.slr_data_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.slr_data_list.FormattingEnabled = true;
+            this.slr_data_list.Location = new System.Drawing.Point(876, 219);
+            this.slr_data_list.Margin = new System.Windows.Forms.Padding(4);
+            this.slr_data_list.Name = "cb_data_list";
+            this.slr_data_list.Size = new System.Drawing.Size(180, 26);
+            this.slr_data_list.TabIndex = 6;
+            this.slr_data_list.SelectedIndexChanged += new System.EventHandler(this.Cb_data_list_SelectedIndexChanged);
             // 
-            // cb_parity_list
+            // slr_parity_list
             // 
-            this.cb_parity_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_parity_list.FormattingEnabled = true;
-            this.cb_parity_list.Location = new System.Drawing.Point(876, 276);
-            this.cb_parity_list.Margin = new System.Windows.Forms.Padding(4);
-            this.cb_parity_list.Name = "cb_parity_list";
-            this.cb_parity_list.Size = new System.Drawing.Size(180, 26);
-            this.cb_parity_list.TabIndex = 7;
-            this.cb_parity_list.SelectedIndexChanged += new System.EventHandler(this.Cb_parity_list_SelectedIndexChanged);
+            this.slr_parity_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.slr_parity_list.FormattingEnabled = true;
+            this.slr_parity_list.Location = new System.Drawing.Point(876, 276);
+            this.slr_parity_list.Margin = new System.Windows.Forms.Padding(4);
+            this.slr_parity_list.Name = "cb_parity_list";
+            this.slr_parity_list.Size = new System.Drawing.Size(180, 26);
+            this.slr_parity_list.TabIndex = 7;
+            this.slr_parity_list.SelectedIndexChanged += new System.EventHandler(this.Cb_parity_list_SelectedIndexChanged);
             // 
             // btn_open_com
             // 
@@ -334,7 +334,7 @@
             this.ts_menu_notepad_tool});
             this.menu_top.Location = new System.Drawing.Point(0, 0);
             this.menu_top.Name = "menu_top";
-            this.menu_top.Size = new System.Drawing.Size(1077, 36);
+            this.menu_top.Size = new System.Drawing.Size(1077, 32);
             this.menu_top.TabIndex = 24;
             // 
             // ts_menu_file
@@ -343,7 +343,7 @@
             this.ts_menu_open_file,
             this.ts_menu_save_as});
             this.ts_menu_file.Name = "ts_menu_file";
-            this.ts_menu_file.Size = new System.Drawing.Size(62, 32);
+            this.ts_menu_file.Size = new System.Drawing.Size(62, 28);
             this.ts_menu_file.Text = "文件";
             // 
             // ts_menu_open_file
@@ -363,12 +363,12 @@
             // ts_menu_screenshot_tool
             // 
             this.ts_menu_screenshot_tool.Name = "ts_menu_screenshot_tool";
-            this.ts_menu_screenshot_tool.Size = new System.Drawing.Size(16, 32);
+            this.ts_menu_screenshot_tool.Size = new System.Drawing.Size(16, 28);
             // 
             // ts_menu_notepad_tool
             // 
             this.ts_menu_notepad_tool.Name = "ts_menu_notepad_tool";
-            this.ts_menu_notepad_tool.Size = new System.Drawing.Size(16, 32);
+            this.ts_menu_notepad_tool.Size = new System.Drawing.Size(16, 28);
             // 
             // label_recv_count
             // 
@@ -483,7 +483,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1077, 736);
+            this.ClientSize = new System.Drawing.Size(1077, 752);
             this.Controls.Add(this.version);
             this.Controls.Add(this.activate1_f6);
             this.Controls.Add(this.activate1_f1);
@@ -509,12 +509,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_open_com);
-            this.Controls.Add(this.cb_parity_list);
-            this.Controls.Add(this.cb_data_list);
-            this.Controls.Add(this.cb_stop_list);
-            this.Controls.Add(this.cb_baud_list);
+            this.Controls.Add(this.slr_parity_list);
+            this.Controls.Add(this.slr_data_list);
+            this.Controls.Add(this.slr_stop_list);
+            this.Controls.Add(this.slr_baud_list);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cb_com_list);
+            this.Controls.Add(this.slr_com_list);
             this.Controls.Add(this.tb_send);
             this.Controls.Add(this.tb_recv);
             this.Controls.Add(this.menu_top);
@@ -535,12 +535,12 @@
 
         #endregion
         private System.Windows.Forms.TextBox tb_send;
-        private System.Windows.Forms.ComboBox cb_com_list;
+        private System.Windows.Forms.ComboBox slr_com_list;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cb_baud_list;
-        private System.Windows.Forms.ComboBox cb_stop_list;
-        private System.Windows.Forms.ComboBox cb_data_list;
-        private System.Windows.Forms.ComboBox cb_parity_list;
+        private System.Windows.Forms.ComboBox slr_baud_list;
+        private System.Windows.Forms.ComboBox slr_stop_list;
+        private System.Windows.Forms.ComboBox slr_data_list;
+        private System.Windows.Forms.ComboBox slr_parity_list;
         private System.Windows.Forms.Button btn_open_com;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

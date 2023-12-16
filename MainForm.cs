@@ -41,12 +41,12 @@ namespace BlueSerial
 
         private void initView()
         {
-            cb_baud_list.DataSource = baudRateList;
-            cb_data_list.DataSource = dataBitList;
-            cb_parity_list.DataSource = parityList;
-            cb_parity_list.SelectedIndex = 2;
-            cb_stop_list.DataSource = stopBitList;
-            cb_baud_list.SelectedIndex = 5;
+            slr_baud_list.DataSource = baudRateList;
+            slr_data_list.DataSource = dataBitList;
+            slr_parity_list.DataSource = parityList;
+            slr_parity_list.SelectedIndex = 2;
+            slr_stop_list.DataSource = stopBitList;
+            slr_baud_list.SelectedIndex = 5;
             chose_project.DataSource = projectList;
             chose_project.SelectedIndex = 0; 
             this.AllowDrop = true;
@@ -85,7 +85,7 @@ namespace BlueSerial
                 }
                 if (comList.Count != scanComList.Count)
                 {
-                    cb_com_list.DataSource = scanComList;
+                    slr_com_list.DataSource = scanComList;
                 }
                 Thread.Sleep(2000);
             }
@@ -105,17 +105,17 @@ namespace BlueSerial
             if (comList.Count == 0)
             {
                 MessageBox.Show("没有搜索到串口");
-                cb_com_list.DataSource = comList;
+                slr_com_list.DataSource = comList;
                 return;
             }
-            cb_com_list.DataSource = comList;
+            slr_com_list.DataSource = comList;
 
-            if (cb_com_list.SelectedIndex > comList.Count || cb_com_list.SelectedIndex < 0)
+            if (slr_com_list.SelectedIndex > comList.Count || slr_com_list.SelectedIndex < 0)
             {
                 //MessageBox.Show("串口丢失");
                 return;
             }
-            mSerialPort = new SerialPort(comList[cb_com_list.SelectedIndex].ToString());
+            mSerialPort = new SerialPort(comList[slr_com_list.SelectedIndex].ToString());
             if (!mSerialPort.IsOpen)
             {
                 try
@@ -131,10 +131,10 @@ namespace BlueSerial
             }
             
 
-            mSerialPort.BaudRate = baudRateList[cb_baud_list.SelectedIndex];
-            mSerialPort.DataBits = dataBitList[cb_data_list.SelectedIndex];
-            mSerialPort.Parity = parityList[cb_parity_list.SelectedIndex];
-            mSerialPort.StopBits = stopBitList[cb_stop_list.SelectedIndex];
+            mSerialPort.BaudRate = baudRateList[slr_baud_list.SelectedIndex];
+            mSerialPort.DataBits = dataBitList[slr_data_list.SelectedIndex];
+            mSerialPort.Parity = parityList[slr_parity_list.SelectedIndex];
+            mSerialPort.StopBits = stopBitList[slr_stop_list.SelectedIndex];
             mSerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
         }
 
@@ -305,6 +305,11 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                     byte[] bytes = convertHexStringToBytes(tb_send.Text);
                     if (bytes != null)
                     {
+                        string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+                        // 构造带时间戳的消息
+                        string messageWithTimestamp = $"{timestamp}: {tb_send.Text}\r\n";
+                        tb_recv.AppendText(messageWithTimestamp);
                         mSerialPort.Write(bytes, 0, bytes.Length);
                         sendByteCount += bytes.Length;
                     }
@@ -347,7 +352,7 @@ private void Btn_open_com_Click(object sender, EventArgs e)
         {
             if (mSerialPort != null)
             {
-                mSerialPort.BaudRate = baudRateList[cb_baud_list.SelectedIndex];
+                mSerialPort.BaudRate = baudRateList[slr_baud_list.SelectedIndex];
             }
         }
 
@@ -357,8 +362,8 @@ private void Btn_open_com_Click(object sender, EventArgs e)
             {
                 try
                 {
-                    mSerialPort.StopBits = stopBitList[cb_stop_list.SelectedIndex];
-                    //mSerialPort.StopBits = stopBitList[cb_stop_list.SelectedIndex];
+                    mSerialPort.StopBits = stopBitList[slr_stop_list.SelectedIndex];
+                    //mSerialPort.StopBits = stopBitList[slr_stop_list.SelectedIndex];
                 }
                 catch (Exception)
                 {
@@ -371,7 +376,7 @@ private void Btn_open_com_Click(object sender, EventArgs e)
         {
             if (mSerialPort != null)
             {
-                mSerialPort.DataBits = dataBitList[cb_data_list.SelectedIndex];
+                mSerialPort.DataBits = dataBitList[slr_data_list.SelectedIndex];
             }
         }
 
@@ -379,7 +384,7 @@ private void Btn_open_com_Click(object sender, EventArgs e)
         {
             if (mSerialPort != null)
             {
-                mSerialPort.Parity = parityList[cb_parity_list.SelectedIndex];
+                mSerialPort.Parity = parityList[slr_parity_list.SelectedIndex];
             }
         }
 

@@ -1,0 +1,15 @@
+E:\code\MyC#\SlrCom\SlrCom\bin\Debug\BCom.exe.config
+E:\code\MyC#\SlrCom\SlrCom\bin\Debug\BCom.exe
+E:\code\MyC#\SlrCom\SlrCom\bin\Debug\BCom.pdb
+E:\code\MyC#\SlrCom\SlrCom\bin\Debug\ApeFree.CodePlus.Algorithm.dll
+E:\code\MyC#\SlrCom\SlrCom\bin\Debug\STTech.CodePlus.dll
+E:\code\MyC#\SlrCom\SlrCom\bin\Debug\ApeFree.CodePlus.Algorithm.xml
+E:\code\MyC#\SlrCom\SlrCom\bin\Debug\STTech.CodePlus.xml
+E:\code\MyC#\SlrCom\SlrCom\obj\Debug\SlrCom.csproj.AssemblyReference.cache
+E:\code\MyC#\SlrCom\SlrCom\obj\Debug\BlueSerial.MainForm.resources
+E:\code\MyC#\SlrCom\SlrCom\obj\Debug\BCom.Properties.Resources.resources
+E:\code\MyC#\SlrCom\SlrCom\obj\Debug\SlrCom.csproj.GenerateResource.cache
+E:\code\MyC#\SlrCom\SlrCom\obj\Debug\SlrCom.csproj.CoreCompileInputs.cache
+E:\code\MyC#\SlrCom\SlrCom\obj\Debug\SlrCom.csproj.CopyComplete
+E:\code\MyC#\SlrCom\SlrCom\obj\Debug\BCom.exe
+E:\code\MyC#\SlrCom\SlrCom\obj\Debug\BCom.pdb

@@ -22,7 +22,7 @@ namespace BlueSerial.Utils
         private static string logFilePath = Path.Combine(logFolderPath, $"error_{DateTime.Now:yyyyMMdd}.log");
 
         //将日志写入文件中
-        public static void LogError(string errorMessage)
+        private static void LogError(string errorMessage)
         {
             try
             {
