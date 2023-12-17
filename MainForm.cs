@@ -1,4 +1,4 @@
-﻿using BCom;
+﻿
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,8 +13,11 @@ using System.Windows.Forms;
 using static BlueSerial.Utils.Utils;
 
 
+
+
 namespace BlueSerial
 {
+
     public partial class MainForm : Form
     {
         private ArrayList comList = new ArrayList();//串口列表
@@ -25,10 +28,57 @@ namespace BlueSerial
         private int sendByteCount = 0;
         private ArrayList projectList =  new ArrayList{ "苏11", "苏6" };
         private List<byte> receivedBytes = new List<byte>();
+        private long  receiveLength = 0;
+        private readonly float x; //定义当前窗体的宽度
+        private readonly float y; //定义当前窗体的高度
 
+        private void setTag(Control cons)
+        {
+            foreach (Control con in cons.Controls)
+            {
+                con.Tag = con.Width + ";" + con.Height + ";" + con.Left + ";" + con.Top + ";" + con.Font.Size;
+                if (con.Controls.Count > 0) setTag(con);
+            }
+        }
+
+        private void setControls(float newx, float newy, Control cons)
+        {
+            //遍历窗体中的控件，重新设置控件的值
+            foreach (Control con in cons.Controls)
+                //获取控件的Tag属性值，并分割后存储字符串数组
+                if (con.Tag != null)
+                {
+                    var mytag = con.Tag.ToString().Split(';');
+                    //根据窗体缩放的比例确定控件的值
+                    con.Width = Convert.ToInt32(Convert.ToSingle(mytag[0]) * newx); //宽度
+                    con.Height = Convert.ToInt32(Convert.ToSingle(mytag[1]) * newy); //高度
+                    con.Left = Convert.ToInt32(Convert.ToSingle(mytag[2]) * newx); //左边距
+                    con.Top = Convert.ToInt32(Convert.ToSingle(mytag[3]) * newy); //顶边距
+                    var currentSize = Convert.ToSingle(mytag[4]) * newy; //字体大小                   
+                    if (currentSize > 0) con.Font = new Font(con.Font.Name, currentSize, con.Font.Style, con.Font.Unit);
+                    con.Focus();
+                    if (con.Controls.Count > 0) setControls(newx, newy, con);
+                }
+        }
+
+
+        /// <summary>
+        /// 重置窗体布局
+        /// </summary>
+        private void ReWinformLayout()
+        {
+            var newx = Width / x;
+            var newy = Height / y;
+            setControls(newx, newy, this);
+
+        }
         public MainForm()
         {
             InitializeComponent();
+
+            x = Width; y = Height;
+            setTag(this);
+
             initView();
             serialPortListInit();
             
@@ -165,18 +215,18 @@ namespace BlueSerial
                 {
                     if (b == 0xf2)
                     {   
-                        if(receivedBytes.Count == 21)
+                        if(receivedBytes.Count >= 21) // 开始新消息
                         {
+                            HandleCompleteMessage(receivedBytes.ToArray());
                             receivedBytes.Clear();
                         }
-                        // 开始新消息
-                        //receivedBytes.Clear();
+                       
                         receivedBytes.Add(b);
                     }
                     else if (b == 0Xf6)
                     {
                         receivedBytes.Add(b);
-                        if(receivedBytes.Count == 21)
+                        if(receivedBytes.Count >= 21)
                         {
                             // 处理完整的消息
                             byte[] completeMessage = receivedBytes.ToArray();
@@ -199,19 +249,17 @@ namespace BlueSerial
         {
             if (cbox_hex_display.Checked)
             {
-                //byte[] byteArray = (byte[])obj;
-
                 string dispalyString = convertBytesToHexString(byteArray, chose_project.SelectedIndex);
+                receiveLength += (dispalyString.Length) / 3;
                 tb_recv.AppendText(dispalyString + "\r\n");
-                label_recv_count.Text = "R:" + (tb_recv.Text.Length) / 3;
+                label_recv_count.Text = "R:" + receiveLength;
             }
             else
             {
-                //byte[] byteArray = (byte[])obj;
                 string hexString = BitConverter.ToString(byteArray).Replace("-", " ");
-
+                receiveLength += (hexString.Length) / 3;
                 tb_recv.AppendText(hexString + "\r\n");
-                label_recv_count.Text = "R:" + (tb_recv.Text.Length) / 3;
+                label_recv_count.Text = "R:" + (receiveLength);
 
             }
         }
@@ -572,7 +620,17 @@ private void Btn_open_com_Click(object sender, EventArgs e)
             }
         }
 
+        private void tb_period_send_time_ms_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            ReWinformLayout();
+        }
+
+        
         private void periodSendTask()
         {
             Control.CheckForIllegalCrossThreadCalls = false;

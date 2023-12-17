@@ -55,6 +55,10 @@ namespace BlueSerial.Utils
         private static bool check(byte[] bytesArray, int type)  //type 为0 代表苏11, 1为苏6
         {
             byte[] inData = new byte[bytesArray.Length - 4];
+            if (bytesArray[0] != 0xf2 || bytesArray[bytesArray.Length - 1] != 0xf6)
+            {
+                return false;
+            }
             if (type == 0 && bytesArray.Length != 21)
             {
                 return false;

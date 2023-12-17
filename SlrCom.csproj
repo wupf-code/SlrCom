@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4B2FAB85-F7A2-4A5B-88E1-DCD8B63A6C13}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BCom</RootNamespace>
-    <AssemblyName>BCom</AssemblyName>
+    <RootNamespace>SlrCom</RootNamespace>
+    <AssemblyName>SlrCom</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
