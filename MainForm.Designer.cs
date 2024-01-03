@@ -276,6 +276,9 @@
             // cbox_timer_send
             // 
             this.cbox_timer_send.AutoSize = true;
+            this.cbox_timer_send.Checked = true;
+            this.cbox_timer_send.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbox_timer_send.Enabled = false;
             this.cbox_timer_send.Location = new System.Drawing.Point(171, 454);
             this.cbox_timer_send.Name = "cbox_timer_send";
             this.cbox_timer_send.Size = new System.Drawing.Size(72, 16);
@@ -402,7 +405,7 @@
             // 
             this.chose_project.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chose_project.FormattingEnabled = true;
-            this.chose_project.Location = new System.Drawing.Point(509, 324);
+            this.chose_project.Location = new System.Drawing.Point(510, 322);
             this.chose_project.Name = "chose_project";
             this.chose_project.Size = new System.Drawing.Size(77, 20);
             this.chose_project.TabIndex = 30;
@@ -429,7 +432,7 @@
             // 
             // activate1_f6
             // 
-            this.activate1_f6.Location = new System.Drawing.Point(590, 408);
+            this.activate1_f6.Location = new System.Drawing.Point(592, 409);
             this.activate1_f6.Name = "activate1_f6";
             this.activate1_f6.Size = new System.Drawing.Size(103, 24);
             this.activate1_f6.TabIndex = 33;

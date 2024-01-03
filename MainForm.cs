@@ -1,14 +1,12 @@
 ﻿
+using SlrCom;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static BlueSerial.Utils.Utils;
 
@@ -31,7 +29,7 @@ namespace BlueSerial
         private long  receiveLength = 0;
         private readonly float x; //定义当前窗体的宽度
         private readonly float y; //定义当前窗体的高度
-
+        private System.Windows.Forms.Timer timeoutTimer;
         private void setTag(Control cons)
         {
             foreach (Control con in cons.Controls)
@@ -75,20 +73,32 @@ namespace BlueSerial
         public MainForm()
         {
             InitializeComponent();
-
+            InitializeTimeoutTimer();
             x = Width; y = Height;
             setTag(this);
-
             initView();
-            serialPortListInit();
-            
+            serialPortListInit();    
             scanComThread = new Thread(new ThreadStart(scanComTask));
-            scanComThread.Start();
-            
-
+            scanComThread.Start();           
         }
 
+        private void InitializeTimeoutTimer()
+        {
+            timeoutTimer = new System.Windows.Forms.Timer();
+            timeoutTimer.Interval = 3000;
+            timeoutTimer.Tick += TimeoutTimer_Tick;
+        }
 
+  
+        private void TimeoutTimer_Tick(object sender, EventArgs e)
+        {
+            // 在此处处理超时事件
+            LogError("3s未接收到正确报文");
+            // 可以在这里添加其他处理逻辑，例如关闭串口等
+
+            // 停止超时计时器
+            timeoutTimer.Stop();
+        }
         private void initView()
         {
             slr_baud_list.DataSource = baudRateList;
@@ -98,7 +108,8 @@ namespace BlueSerial
             slr_stop_list.DataSource = stopBitList;
             slr_baud_list.SelectedIndex = 5;
             chose_project.DataSource = projectList;
-            chose_project.SelectedIndex = 0; 
+            chose_project.SelectedIndex = 0;
+            
             this.AllowDrop = true;
             this.DragEnter += new DragEventHandler(tvRecvDragEnterEventHandler);
             // 确保 log 文件夹存在
@@ -108,6 +119,8 @@ namespace BlueSerial
             }
             //LogError("123123123123");
         }
+
+
 
         private void tvRecvDragEnterEventHandler(object obj, DragEventArgs args)
         {
@@ -172,6 +185,8 @@ namespace BlueSerial
                 {
                     btn_open_com.Text = "打开串口";
                     btn_open_com.ForeColor = Color.Black;
+                    //cbox_timer_send.Enabled = true;
+                    //timeoutTimer.Start();
                 }
                 catch (Exception)
                 {
@@ -249,10 +264,16 @@ namespace BlueSerial
         {
             if (cbox_hex_display.Checked)
             {
-                string dispalyString = convertBytesToHexString(byteArray, chose_project.SelectedIndex);
-                receiveLength += (dispalyString.Length) / 3;
-                tb_recv.AppendText(dispalyString + "\r\n");
+                //string dispalyString = convertBytesToHexString(byteArray, chose_project.SelectedIndex);
+                MessageRec message = new MessageRec(byteArray, chose_project.SelectedIndex);
+                receiveLength += (message.Content.Length) / 3;
+                tb_recv.AppendText(message.Content + "\r\n");
                 label_recv_count.Text = "R:" + receiveLength;
+                if(message.IsChecksumValid == true)
+                {
+                    timeoutTimer.Stop();
+                    timeoutTimer.Start();
+                }
             }
             else
             {
@@ -260,7 +281,6 @@ namespace BlueSerial
                 receiveLength += (hexString.Length) / 3;
                 tb_recv.AppendText(hexString + "\r\n");
                 label_recv_count.Text = "R:" + (receiveLength);
-
             }
         }
         
@@ -275,8 +295,11 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                     try
                     {
                         mSerialPort.Close();
+                        cbox_timer_send.Enabled = false;
                         btn_open_com.Text = "打开串口";
                         btn_open_com.ForeColor = Color.Black;
+                        timeoutTimer.Stop();
+
                     }
                     catch (Exception)
                     {
@@ -288,8 +311,10 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                     try
                     {
                         mSerialPort.Open();
+                        cbox_timer_send.Enabled = true;
                         btn_open_com.Text = "关闭串口";
                         btn_open_com.ForeColor = Color.Red;
+                        timeoutTimer.Start();
                     }
                     catch (Exception)
                     {
@@ -392,7 +417,6 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                 
             }
             
-
 
         }
 
