@@ -276,9 +276,6 @@
             // cbox_timer_send
             // 
             this.cbox_timer_send.AutoSize = true;
-            this.cbox_timer_send.Checked = true;
-            this.cbox_timer_send.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbox_timer_send.Enabled = false;
             this.cbox_timer_send.Location = new System.Drawing.Point(171, 454);
             this.cbox_timer_send.Name = "cbox_timer_send";
             this.cbox_timer_send.Size = new System.Drawing.Size(72, 16);
@@ -344,7 +341,9 @@
             // ts_menu_screenshot_tool
             // 
             this.ts_menu_screenshot_tool.Name = "ts_menu_screenshot_tool";
-            this.ts_menu_screenshot_tool.Size = new System.Drawing.Size(12, 22);
+            this.ts_menu_screenshot_tool.Size = new System.Drawing.Size(44, 22);
+            this.ts_menu_screenshot_tool.Text = "介绍";
+            this.ts_menu_screenshot_tool.Click += new System.EventHandler(this.ts_menu_screenshot_tool_Click);
             // 
             // ts_menu_notepad_tool
             // 
@@ -448,7 +447,7 @@
             this.version.Name = "version";
             this.version.Size = new System.Drawing.Size(83, 12);
             this.version.TabIndex = 34;
-            this.version.Text = "version: V1.0";
+            this.version.Text = "version: V1.1";
             // 
             // MainForm
             // 

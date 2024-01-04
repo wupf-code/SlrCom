@@ -97,7 +97,6 @@ namespace BlueSerial
             // 可以在这里添加其他处理逻辑，例如关闭串口等
 
             // 停止超时计时器
-            timeoutTimer.Stop();
         }
         private void initView()
         {
@@ -295,10 +294,8 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                     try
                     {
                         mSerialPort.Close();
-                        cbox_timer_send.Enabled = false;
                         btn_open_com.Text = "打开串口";
                         btn_open_com.ForeColor = Color.Black;
-                        timeoutTimer.Stop();
 
                     }
                     catch (Exception)
@@ -311,10 +308,9 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                     try
                     {
                         mSerialPort.Open();
-                        cbox_timer_send.Enabled = true;
                         btn_open_com.Text = "关闭串口";
                         btn_open_com.ForeColor = Color.Red;
-                        timeoutTimer.Start();
+                        //timeoutTimer.Start();
                     }
                     catch (Exception)
                     {
@@ -480,6 +476,7 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                 try
                 {
                     Convert.ToInt32(tb_period_send_time_ms.Text);
+                    timeoutTimer.Start();
                     periodSendThread = new Thread(new ThreadStart(periodSendTask));
                     periodSendThread.Start();
                 }
@@ -493,10 +490,13 @@ private void Btn_open_com_Click(object sender, EventArgs e)
             }
             else
             {
+                
                 if (periodSendThread != null)
                 {
                     try
                     {
+                        timeoutTimer.Stop();
+
                         periodSendThread.Abort();
                     } catch (Exception)
                     {
@@ -654,10 +654,19 @@ private void Btn_open_com_Click(object sender, EventArgs e)
             ReWinformLayout();
         }
 
-        
+        private void ts_menu_screenshot_tool_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("1. 记录错误回复\r\n" + "2. 3s通讯故障\r\n"
+                );
+
+        }
+
+
+
         private void periodSendTask()
         {
             Control.CheckForIllegalCrossThreadCalls = false;
+
             while (true)
             {
                 sendData();
