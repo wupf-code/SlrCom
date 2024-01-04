@@ -24,7 +24,7 @@ namespace BlueSerial
         private Thread receiveThread=null,scanComThread=null,periodSendThread;
         private delegate void SafeCallDelegate(byte[] text);
         private int sendByteCount = 0;
-        private ArrayList projectList =  new ArrayList{ "苏11", "苏6" };
+        private ArrayList projectList =  new ArrayList{ "苏11", "苏6" ,"徐6"};
         private List<byte> receivedBytes = new List<byte>();
         private long  receiveLength = 0;
         private readonly float x; //定义当前窗体的宽度
@@ -97,7 +97,6 @@ namespace BlueSerial
             // 可以在这里添加其他处理逻辑，例如关闭串口等
 
             // 停止超时计时器
-            timeoutTimer.Stop();
         }
         private void initView()
         {
@@ -226,11 +225,19 @@ namespace BlueSerial
             else
             {
                 byte[] byteArray = (byte[])obj;
+                int receiveDataLength = 0; //用来确定对应项目ods所需要发送的报文长度
+                if(chose_project.SelectedIndex == 0 || chose_project.SelectedIndex == 1)
+                {
+                    receiveDataLength = 21;
+                } else if(chose_project.SelectedIndex == 2)
+                {
+                    receiveDataLength = 25;
+                }
                 foreach (byte b in byteArray)
                 {
                     if (b == 0xf2)
                     {   
-                        if(receivedBytes.Count >= 21) // 开始新消息
+                        if(receivedBytes.Count >= receiveDataLength) // 开始新消息
                         {
                             HandleCompleteMessage(receivedBytes.ToArray());
                             receivedBytes.Clear();
@@ -241,7 +248,7 @@ namespace BlueSerial
                     else if (b == 0Xf6)
                     {
                         receivedBytes.Add(b);
-                        if(receivedBytes.Count >= 21)
+                        if(receivedBytes.Count >= receiveDataLength)
                         {
                             // 处理完整的消息
                             byte[] completeMessage = receivedBytes.ToArray();
@@ -295,10 +302,8 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                     try
                     {
                         mSerialPort.Close();
-                        cbox_timer_send.Enabled = false;
                         btn_open_com.Text = "打开串口";
                         btn_open_com.ForeColor = Color.Black;
-                        timeoutTimer.Stop();
 
                     }
                     catch (Exception)
@@ -311,10 +316,9 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                     try
                     {
                         mSerialPort.Open();
-                        cbox_timer_send.Enabled = true;
                         btn_open_com.Text = "关闭串口";
                         btn_open_com.ForeColor = Color.Red;
-                        timeoutTimer.Start();
+                        //timeoutTimer.Start();
                     }
                     catch (Exception)
                     {
@@ -480,6 +484,7 @@ private void Btn_open_com_Click(object sender, EventArgs e)
                 try
                 {
                     Convert.ToInt32(tb_period_send_time_ms.Text);
+                    timeoutTimer.Start();
                     periodSendThread = new Thread(new ThreadStart(periodSendTask));
                     periodSendThread.Start();
                 }
@@ -493,10 +498,13 @@ private void Btn_open_com_Click(object sender, EventArgs e)
             }
             else
             {
+                
                 if (periodSendThread != null)
                 {
                     try
                     {
+                        timeoutTimer.Stop();
+
                         periodSendThread.Abort();
                     } catch (Exception)
                     {
@@ -654,10 +662,19 @@ private void Btn_open_com_Click(object sender, EventArgs e)
             ReWinformLayout();
         }
 
-        
+        private void ts_menu_screenshot_tool_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("1. 记录错误回复\r\n" + "2. 3s通讯故障\r\n"
+                );
+
+        }
+
+
+
         private void periodSendTask()
         {
             Control.CheckForIllegalCrossThreadCalls = false;
+
             while (true)
             {
                 sendData();

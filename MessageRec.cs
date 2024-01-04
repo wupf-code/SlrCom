@@ -25,7 +25,7 @@ namespace SlrCom
             return hexString;
         }
 
-        private static bool ValidateChecksum(byte[] bytesArray, int type)  //type 为0 代表苏11, 1为苏6
+        private static bool ValidateChecksum(byte[] bytesArray, int type)  //type 为0 代表苏11, 1为苏6， 2 为徐六
         {
             byte[] inData = new byte[bytesArray.Length - 4];
             if (bytesArray[0] != 0xf2 || bytesArray[bytesArray.Length - 1] != 0xf6)
@@ -37,6 +37,10 @@ namespace SlrCom
                 return false;
             }
             if (type == 1 && bytesArray.Length != 21)
+            {
+                return false;
+            }
+            if(type == 2 && bytesArray.Length != 25)
             {
                 return false;
             }
